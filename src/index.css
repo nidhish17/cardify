@@ -1,7 +1,82 @@
 @import "tailwindcss";
 
+@theme {
+    /* Highlights & Text (Brighter shades for contrast on dark backgrounds) */
+    --color-primary-100: #C2C9D6;   /* For high-emphasis text, active icons */
+    --color-primary-200: #949DAD;   /* For primary body text */
+    --color-primary-300: #657386;   /* For secondary text, subtitles, disabled elements */
+    --color-primary-400: #4A5568;   /* For subtle borders, dividers */
+
+    /* Interactive Elements (Mid-range for primary actions) */
+    --color-primary-500: #343E4C;   /* For primary buttons, links */
+    --color-primary-600: #222831;   /* Your original color; good for cards, secondary backgrounds */
+
+    /* Backgrounds (Deepest shades for immersion) */
+    --color-primary-700: #1D242C;   /* For modal backgrounds, hover states on dark elements */
+    --color-primary-800: #1A2027;   /* A slightly richer dark background */
+    --color-primary-900: #13171C;   /* The darkest shade, for main app background */
 
 
+}
+
+
+@layer base {
+    body {
+        /*@apply bg-[#210F37] text-white;*/
+        /*background-color: ;*/
+        @apply text-white bg-primary-900 relative;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-bold;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.75rem;
+    }
+
+    h4 {
+        font-size: 1.5rem;
+    }
+
+    h5 {
+        font-size: 1.25rem;
+    }
+
+    h6 {
+        font-size: 1rem;
+    }
+
+    button {
+        @apply rounded transition-all duration-200 cursor-pointer font-semibold;
+    }
+
+    a {
+        @apply transition-all duration-200;
+    }
+}
+
+
+@layer components {
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type="number"] {
+        appearance: textfield !important;
+    }
+
+}
 
 
 

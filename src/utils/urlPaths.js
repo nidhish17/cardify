@@ -1,0 +1,1 @@
+export const COLLAGE_APP = "create/collage";
