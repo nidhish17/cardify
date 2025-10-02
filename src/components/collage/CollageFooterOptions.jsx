@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Maximize, CircleMinus, CirclePlus, Expand, Minimize, Percent} from "lucide-react";
 import {getFullScreenElement} from "../../utils/helpers.js";
 
@@ -8,9 +8,15 @@ const CollageFooterOptions = function ({canvasW, canvasH, fitToScreen, canvasSca
     const [fullScreen, setFullScreen] = useState(false);
     const [zoom, setZoom] = useState(`${canvasScale}`);
     // console.log(zoom, "vs", canvasScale);
+    const rangeInputRef = useRef(null);
 
     useEffect(() => {
         setZoom(`${Math.round(canvasScale*100)}`);
+        const min = parseFloat(rangeInputRef?.current.min);
+        const max = parseFloat(rangeInputRef?.current.max);
+        const el = rangeInputRef?.current;
+        const sliderProgress = ((canvasScale - min) / (max - min)) * 100;
+        el.style.background = `linear-gradient(to right, #fff ${sliderProgress}%, var(--color-primary-500) ${sliderProgress}%`;
     }, [canvasScale]);
 
     const handleZoomBlur = (e) => {
@@ -90,6 +96,7 @@ const CollageFooterOptions = function ({canvasW, canvasH, fitToScreen, canvasSca
                     </button>
 
                     <input type="range"
+                           ref={rangeInputRef}
                            min={0.1} max={1.5} step={0.01}
                            onChange={handleRangeInput}
                            value={canvasScale}

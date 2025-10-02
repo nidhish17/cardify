@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Percent} from "lucide-react";
 
 
@@ -8,11 +8,20 @@ const RangeInput = function ({label, min=0, max=100, rangeVal=0, setRangeVal, on
     // These are the local state for input range!
     // const [rangeValue, setRangeValue] = useState(rangeVal);
     const [inputValue, setInputValue] = useState(`${rangeVal}`);
+    const rangeInputRef = useRef(null);
+
+    useEffect(() => {
+        const el = rangeInputRef?.current
+        el.style.background = `linear-gradient(to right, #fff ${inputValue}%, var(--color-primary-500) ${inputValue}%`;
+        // eslint-disable-next-line
+    }, []);
 
     const handleSetRange = function (e) {
         const value = Number(e.target.value);
         setRangeVal(value);
         setInputValue(`${value}`);
+        const el = rangeInputRef?.current;
+        el.style.background = `linear-gradient(to right, #fff ${value}%, var(--color-primary-500) ${value}%`;
     }
 
     const handleOnBlurInput = function (e) {
@@ -22,6 +31,8 @@ const RangeInput = function ({label, min=0, max=100, rangeVal=0, setRangeVal, on
         }
         const value = Number(e.target.value);
         onInputFocusout(value);
+        const el = rangeInputRef?.current;
+        el.style.background = `linear-gradient(to right, #fff ${value}%, var(--color-primary-500) ${value}%`;
     }
 
     return (
@@ -41,6 +52,7 @@ const RangeInput = function ({label, min=0, max=100, rangeVal=0, setRangeVal, on
             </div>
 
             <input
+                ref={rangeInputRef}
                 type="range" value={rangeVal}
                 min={min} max={max}
                 onChange={handleSetRange}
