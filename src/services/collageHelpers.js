@@ -13,12 +13,12 @@ export function normalizeInputs(value, canvasW, canvasH, numRows, numCols) {
 
 export const defaultBgColors = [
     "#fff",
-    "#666",
+    "#c3320a",
     "#444",
-    "#000",
+    "#000000",
     "#F270DD",
     "#E99F06",
     "#F8E71D",
-    "#6ECB27",
-    "#0066DC"
+    "#00ff80",
+    "#0080ff"
 ]
