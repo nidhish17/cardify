@@ -38,7 +38,7 @@ function CanvasResolution() {
         adjustWidthRef.current = {...adjustWidthRef.current, isDragging: true, startY: startPosition, dimension};
         document.body.classList.add("cursor-row-resize");
         document.getElementById("customize-collage").classList.add("select-none");
-        console.log("drag started!");
+        // console.log("drag started!");
 
         window.addEventListener("mousemove", handleMouseMove);
         window.addEventListener("mouseup", handleMouseUp);
@@ -79,7 +79,7 @@ function CanvasResolution() {
         adjustWidthRef.current = {isDragging: false, ...adjustWidthRef.current};
         document.body.classList.remove("cursor-row-resize");
         document.getElementById("customize-collage").classList.remove("select-none");
-        console.log("mouse Up")
+        // console.log("mouse Up")
         triggerFitToScreen();
 
         window.removeEventListener("mousemove", handleMouseMove);

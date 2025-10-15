@@ -6,14 +6,14 @@ const useCollageStore = create(
     devtools(
         (setState, getState) => ({
             spacing: 10,
-            collageBgColor: "#fff",
+            collageBgColor: "#00ff80",
             canvasSize: {
                 // width: 1503,
                 // height: 2172,
                 width: 1451,
                 height: 2105,
             },
-            cellRadius: 0,
+            cellRadius: 10,
 
             fitToScreen: null,
             setFitToScreen: (fitFunction) => setState({fitToScreen: fitFunction}),

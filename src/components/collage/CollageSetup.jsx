@@ -10,8 +10,8 @@ extend({
     Graphics
 });
 
-function CollageSetup({children}) {
-    const appRef = useRef(null);
+function CollageSetup({children, appRef}) {
+
     const wrapperRef = useRef(null);
 
     const {canvasSize, collageBgColor, setFitToScreen} = useCollageStore();
@@ -92,15 +92,7 @@ function CollageSetup({children}) {
             <main id="collage-container" className="relative col-[2_/_3] row-[2_/_2] flex flex-col justify-between overflow-hidden">
                 <div ref={wrapperRef}
                      className="basis-full grid place-items-center overflow-y-scroll">
-                    <Application
-                        width={canvasW} height={canvasH}
-                        backgroundColor={collageBgColor}
-                        antialias
-                        ref={appRef}
-
-                    >
-                        {children}
-                    </Application>
+                    {children}
                 </div>
 
                 <CollageFooterOptions

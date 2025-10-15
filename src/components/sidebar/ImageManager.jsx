@@ -40,7 +40,7 @@ function ImageManager() {
     }
 
     const handleImageDragStart = function (e, originalFile) {
-        console.log(e.target);
+        // console.log(e.target);
         const imageBlob = URL.createObjectURL(originalFile);
         e.dataTransfer.setData("text/plain", imageBlob);
     }
