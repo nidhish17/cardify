@@ -1,8 +1,8 @@
 import useCollageStore from "../../stores/collageStore.js";
 import RangeInput from "../RangeInput.jsx";
-import {useRef, useState} from "react";
-import {defaultBgColors} from "../../services/collageHelpers.js";
+import {useRef} from "react";
 import ColorPicker from "../ColorPicker.jsx";
+import CanvasResolution from "../CanvasResolution.jsx";
 
 
 function CustomizeCollage() {
@@ -46,10 +46,13 @@ function CustomizeCollage() {
     }
 
     return (
-        <div className="flex flex-col gap-y-6">
+        <div id="customize-collage" className="flex flex-col gap-y-8 text-primary-100">
             <ColorPicker />
-            <RangeInput label="spacing" rangeVal={spacing} setRangeVal={setSpacingRange} min={0} max={100} onInputFocusout={setSpacingInput} />
-            <RangeInput label="Roundess" rangeVal={cellRadius} setRangeVal={setCellRadius} min={0} max={100} onInputFocusout={setCellRadiusInput} />
+            <div className="space-y-3">
+                <RangeInput label="spacing" rangeVal={spacing} setRangeVal={setSpacingRange} min={0} max={100} onInputFocusout={setSpacingInput} />
+                <RangeInput label="Roundess" rangeVal={cellRadius} setRangeVal={setCellRadius} min={0} max={100} onInputFocusout={setCellRadiusInput} />
+            </div>
+            <CanvasResolution />
         </div>
     );
 }
