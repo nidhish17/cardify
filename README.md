@@ -16,8 +16,8 @@
 <img src="./src/assets/app_screenshots/colored_canvas.png" alt="blue background collage">
 
 TO Run the app follow these steps:
-NOTE:- The Collage Maker app is currently under development in the imageDevelopment branch
-and has not been merged to main yet.
+
+NOTE:- The Collage Maker app is currently in the imageDevelopment branch and has NOT been merged to main yet. It's pending final review/approval.
 
 `git clone https://github.com/nidhish17/cardify.git`
 
