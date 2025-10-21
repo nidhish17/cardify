@@ -55,10 +55,10 @@ function ImageManager() {
             <input onChange={handleUploads} ref={fileInputRef} type="file" accept="image/jpeg, image/jpg, image/png, image/webp" multiple hidden />
 
             {images?.length === 0 && <p className="font-semibold text-center">Add some images.</p>}
-            <div className="grid grid-cols-2 *:grow gap-3">
+            <div className="grid grid-cols-2 gap-3">
                 {images?.map((image) => {
                     return (
-                        <figure key={image.id} onDragStart={(e) => handleImageDragStart(e, image.originalFile)} className="relative rounded size-25 group">
+                        <figure key={image.id} onDragStart={(e) => handleImageDragStart(e, image.originalFile)} className="relative rounded w-full h-25 group">
                             <img src={image.base64Img} alt={image.name} className="object-cover size-full rounded-xl" />
                             <div className="absolute inset-0 flex items-end justify-end bg-gradient-to-b from-primary-500/10 to-primary-500/60 rounded opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
                                 <button className="pointer-events-auto">

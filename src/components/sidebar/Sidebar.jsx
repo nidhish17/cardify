@@ -19,7 +19,7 @@ function Sidebar() {
     }
 
     return (
-        <aside className="h-scree max-wxs flex col-[1_/_2] row-[2_/_2]">
+        <aside className="flex col-[1_/_2] row-[2_/_2] h-full">
             <SideNav>
                 <button className={`${navPage === "imageManager" ? "text-white" : "text-primary-400"}`} onClick={() => handleFeatureClick("imageManager")} data-tooltip-id="collage-tooltip" data-tooltip-content="Images Manager">
                     <Images size={25} />
@@ -34,7 +34,7 @@ function Sidebar() {
 
             {/*collage settings, Image manager, templates*/}
             {/*${contentOpen ? "scale-x-100" : "scale-x-0 opacity-0"} side bar is always open! */}
-            <div className={`w-full bg-primary-800 border-r-primary-500/70 border-r py-4 px-4 space-y-4 origin-left transition-all overflow-x-hidden duration-200`}>
+            <div style={{height: "calc(100vh - 60px)"}} className={`w-full flex flex-col gap-y-4 bg-primary-800 border-r-primary-500/70 border-r py-4 px-4 origin-left transition-all overflow-x-hidden duration-200`}>
                 <div className="space-y-1">
                     <div className="flex items-center justify-between">
                         <h5 className="capitalize">{navPage === "imageManager" ? "Image Manager" : navPage === "customizeCollage" ? "customize Collage" : navPage === "templates" && "Templates"}</h5>

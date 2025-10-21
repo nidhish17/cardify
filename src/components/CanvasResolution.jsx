@@ -4,11 +4,19 @@ import {useEffect, useRef, useState} from "react";
 
 function CanvasResolution() {
     // setCanvasSize({width: 1451, height: 2105}); -> arg should be an object
-    const {canvasSize, changeCanvasH, changeCanvasW, flipOrientation, triggerFitToScreen} = useCollageStore();
-    const {width, height} = canvasSize;
+    const {canvasSize, changeCanvasH, changeCanvasW, flipOrientation, triggerFitToScreen, setCanvasWidth, setCanvasHeight} = useCollageStore();
+    const {width="", height=""} = canvasSize;
 
     const [orientation, setOrientation] = useState(() => (width > height ? "landscape" : "portrait"));
     const adjustWidthRef = useRef({isDragging: false, startY: null, dimension: ""})
+
+    const [widthInput, setWidthInput] = useState(width);
+    const [heightInput, setHeightInput] = useState(height);
+
+    useEffect(() => {
+        setWidthInput(width);
+        setHeightInput(height);
+    }, [width, height]);
 
     useEffect(() => {
         if (width > height) {
@@ -28,6 +36,39 @@ function CanvasResolution() {
     const handleLandscapeBtn = async function () {
         await flipOrientation("landscape");
         setOrientation("landscape");
+        triggerFitToScreen();
+    }
+
+    const handleWidthInputOnBlur = function (e) {
+        if (!widthInput) {
+            console.log("theres no width input!");
+            setWidthInput(width);
+            return;
+        }
+        if (widthInput < 512) {
+            // setWidthInput(width);
+            setCanvasWidth(512);
+        } else if (widthInput > 4000) {
+            setCanvasWidth(4000);
+        } else {
+            setCanvasWidth(parseInt(widthInput))
+        }
+        triggerFitToScreen();
+    }
+
+    const handleHeightInputOnBlur = function (e) {
+        if (!heightInput) {
+            setHeightInput(height);
+            return;
+        }
+        if (heightInput < 512) {
+            // setHeightInput(height);
+            setCanvasHeight(512);
+        }else if (heightInput > 4000) {
+            setCanvasHeight(4000);
+        } else {
+            setCanvasHeight(parseInt(heightInput));
+        }
         triggerFitToScreen();
     }
 
@@ -113,7 +154,12 @@ function CanvasResolution() {
                             id="canvasWidth"
                             type="number"
                             min={512} max={4000}
-                            value={width}
+                            value={widthInput}
+                            onChange={(e) => {
+                                const newWidth = e.target.value;
+                                setWidthInput(newWidth)
+                            }}
+                            onBlur={handleWidthInputOnBlur}
                             className="basis-full outline-none px-3 py-0.5 w-full" />
 
                         <div onMouseDown={(e) => handleResizeCanvas(e, "width")} className="basis-1/2 border-l border-l-primary-500 flex flex-col justify-evenly items-center cursor-row-resize *:cursor-row-resize">
@@ -133,7 +179,9 @@ function CanvasResolution() {
                             id="canvasHeight"
                             type="number"
                             min={512} max={4000}
-                            value={height}
+                            value={heightInput}
+                            onChange={(e) => setHeightInput(e.target.value)}
+                            onBlur={handleHeightInputOnBlur}
                             className="basis-full outline-none px-3 py-0.5 w-full" />
 
                         <div onMouseDown={(e) => handleResizeCanvas(e, "height")} className="basis-1/2 border-l border-l-primary-500 flex flex-col justify-evenly items-center cursor-row-resize *:cursor-row-resize">

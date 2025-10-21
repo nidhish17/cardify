@@ -6,7 +6,7 @@ const useCollageStore = create(
     devtools(
         (setState, getState) => ({
             spacing: 10,
-            collageBgColor: "#00ff80",
+            collageBgColor: "#fff",
             canvasSize: {
                 // width: 1503,
                 // height: 2172,
@@ -52,6 +52,18 @@ const useCollageStore = create(
                 }
                 return {...prev, canvasSize: {...prev.canvasSize, height: newH}}
             }),
+
+            setCanvasWidth: (newWidth) => setState((prev) => {
+                // if (!newWidth) return prev;
+                if (newWidth < 512 || !newWidth) {
+                    return {...prev, canvasSize: {...prev.canvasSize, width: 512}}
+                } else if (newWidth > 4000) {
+                    return {...prev, canvasSize: {...prev.canvasSize, width: 4000}}
+                }
+                return {...prev, canvasSize: {...prev.canvasSize, width: newWidth}}
+            }),
+
+            setCanvasHeight: (newHeight) => setState((prev) => ({...prev, canvasSize: {...prev.canvasSize, height: newHeight}})),
 
             flipOrientation: (orientationType) => {
                 setState((prev) => {

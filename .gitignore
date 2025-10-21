@@ -26,4 +26,4 @@ dist-ssr
 .gitignore
 eslint.config.js
 
-src/components/Collage2.jsx
+#src/components/Collage2.jsx
